@@ -1,151 +1,67 @@
-"use client"
-import Slider from "react-slick";
-import React, { Component } from "react";
+"use client";
+import React from "react";
 import Image from "next/image";
 
-// CAROUSEL DATA
+const mentorData = {
+  name: "Anjali Chauhan",
+  qualification: "MSC in Biotechnology",
+  description:"Anjali Chauhan holds an MSc in Biotechnology and has over 4 years of experience in the teaching field. Passionate about educating and inspiring students, with a focus on making complex scientific concepts accessible and engaging",
+  specialties: ["Biology", "Immunology", "Microbiology"],
+  imgSrc: "/assets/mentor/user1.png",
+};
 
-interface DataType {
-    profession: string;
-    name: string;
-    imgSrc: string;
-}
-
-const postData: DataType[] = [
-    {
-        profession: 'Senior UX Designer',
-        name: 'Shoo Thar Mien',
-        imgSrc: '/assets/mentor/user3.png',
-    },
-    {
-        profession: 'Senior UX Designer',
-        name: 'Shoo Thar Mien',
-        imgSrc: '/assets/mentor/user2.png',
-    },
-    {
-        profession: 'Senior UX Designer',
-        name: 'Shoo Thar Mien',
-        imgSrc: '/assets/mentor/user1.png',
-    },
-    {
-        profession: 'Senior UX Designer',
-        name: 'Shoo Thar Mien',
-        imgSrc: '/assets/mentor/user3.png',
-    },
-    {
-        profession: 'Senior UX Designer',
-        name: 'Shoo Thar Mien',
-        imgSrc: '/assets/mentor/user2.png',
-    },
-    {
-        profession: 'Senior UX Designer',
-        name: 'Shoo Thar Mien',
-        imgSrc: '/assets/mentor/user1.png',
-    },
-]
-
-// CAROUSEL SETTINGS
-
-function SampleNextArrow(props: { className: any; style: any; onClick: any; }) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={className}
-            style={{ ...style, display: "flex", justifyContent: "center", position: 'absolute', alignItems: "center" , background: "#D5EFFA", padding: "28px", borderRadius: "30px", border: "1px solid #1A21BC" }}
-            onClick={onClick}
-        />
-    );
-}
-
-function SamplePrevArrow(props: { className: any; style: any; onClick: any; }) {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={className}
-            style={{ ...style, display: "flex", justifyContent: "center", alignItems: "center" , background: "#D5EFFA", padding: "28px", borderRadius: "30px", border: "1px solid #1A21BC" }}
-            onClick={onClick}
-        />
-    );
-}
-
-
-
-export default class MultipleItems extends Component {
-
-    render() {
-        const settings = {
-            dots: false,
-            infinite: true,
-            slidesToShow: 3,
-            // centerMode: true,
-            slidesToScroll: 1,
-            arrows: false,
-            autoplay: false,
-            speed: 4000,
-            nextArrow: <SampleNextArrow className={undefined} style={undefined} onClick={undefined} />,
-            prevArrow: <SamplePrevArrow className={undefined} style={undefined} onClick={undefined} />,
-            autoplaySpeed: 4500,
-            cssEase: "linear",
-            responsive: [
-                {
-                    breakpoint: 1200,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1,
-                        infinite: true,
-                        dots: false
-                    }
-                },
-                {
-                    breakpoint: 1000,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1,
-                        infinite: true,
-                        dots: false
-                    }
-                },
-                {
-                    breakpoint: 530,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        infinite: true,
-                        dots: false
-                    }
-                }
-            ]
-        };
-
-
-        return (
-            <div className="py-10 sm:py-24 bg-paleblue" id="mentor">
-
-                <div className='mx-auto max-w-2xl lg:max-w-7xl sm:py-4 px-4 lg:px-8 relative'>
-                    <h2 className="lh-82 text-midnightblue text-4xl md:text-55xl text-center md:text-start font-semibold">Meet with our <br /> mentor.</h2>
-
-                    <Slider {...settings}>
-                        {postData.map((items, i) => (
-                            <div key={i}>
-                                <div className='m-3 py-14 md:my-10 text-center'>
-                                    <div className="relative">
-                                        <Image src={items.imgSrc} alt="user-image" width={306} height={0} className="inline-block m-auto" />
-                                        <div className="absolute right-[84px] bottom-[102px] bg-white rounded-full p-4">
-                                            <Image src={'/assets/mentor/linkedin.svg'} alt="linkedin-image" width={25} height={24} />
-                                        </div>
-                                    </div>
-                                    <div className="-mt-10">
-                                        <h3 className='text-2xl font-semibold text-lightblack'>{items.name}</h3>
-                                        <h4 className='text-lg font-normal text-lightblack pt-2 opacity-50'>{items.profession}</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </Slider>
-
-                </div>
+export default function MentorDetails() {
+  return (
+    <div className="py-10 sm:py-20 bg-paleblue" id="mentor">
+      <div className="mx-auto max-w-7xl sm:py-4 px-4 lg:px-8">
+        <h2 className="text-midnightblue text-4xl md:text-5xl text-center font-semibold mb-10">
+          Meet with our Mentor
+        </h2>
+        <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row items-center md:items-start">
+          {/* Left Side: Image */}
+          <div className="w-full md:w-1/3">
+            <Image
+              src={mentorData.imgSrc}
+              alt={mentorData.name}
+              width={400}
+              height={400}
+              className="object-cover w-full h-auto"
+            />
+          </div>
+          {/* Right Side: Details */}
+          <div className="p-6 md:p-8 w-full md:w-2/3 flex flex-col gap-4">
+            <div>
+              <h3 className="text-2xl font-semibold text-midnightblue">
+                {mentorData.name}
+              </h3>
+              <h4 className="text-lg font-medium text-lightgray mt-1">
+                {mentorData.qualification}
+              </h4>
             </div>
-
-        );
-    }
+            <p className="text-gray-700 text-base leading-6">
+              {mentorData.description}
+            </p>
+            <div>
+              <h4 className="text-lg font-semibold text-midnightblue">
+                Areas of Expertise:
+              </h4>
+              <ul className="list-disc list-inside text-gray-700 mt-2">
+                {mentorData.specialties.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex flex-col md:flex-row items-center gap-4 mt-4">
+              <button className="bg-ultramarine text-white px-6 py-3 text-sm font-medium rounded-full shadow-lg hover:bg-midnightblue transition ease-in-out duration-300">
+                Book a Session
+              </button>
+              <button className="bg-white border border-ultramarine text-ultramarine px-6 py-3 text-sm font-medium rounded-full shadow-lg hover:bg-lightkblue transition ease-in-out duration-300">
+                Learn More
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
